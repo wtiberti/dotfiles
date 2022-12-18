@@ -35,15 +35,15 @@ if ! shopt -oq posix; then
 fi
 
 __set_prompt() {
-	local exitvalue=${PIPESTATUS[-1]}
+	#local exitvalue=${PIPESTATUS[-1]}
 	PS1=''
-	local exitcolor="\[\e[48;5;237;92m\]"
-	local exitchar="✔"
-	if [ ${exitvalue} != 0 ]; then
-		exitcolor="\[\e[48;5;237;91m\]"
-		exitchar="✘"
-	fi
-	PS1+="${exitcolor}${exitchar}:${exitvalue} "
+	#local exitcolor="\[\e[48;5;237;92m\]"
+	#local exitchar="✔"
+	#if [ ${exitvalue} != 0 ]; then
+	#	exitcolor="\[\e[48;5;237;91m\]"
+	#	exitchar="✘"
+	#fi
+	#PS1+="${exitcolor}${exitchar}:${exitvalue} "
 	local stylestop="\[\e[0m\]"
 	local style1="\[\e[48;5;237;1;94m\]"
 	local arrow1="\[\e[48;5;240;38;5;237m\]"
