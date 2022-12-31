@@ -36,6 +36,11 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'gruvbox-community/gruvbox'
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -45,7 +50,11 @@ call plug#end()
 set guicursor=n-v-c-i:block
 let g:LanguageClient_serverCommands = {
 \ 'rust': ['rust-analyzer'],
+\ 'cpp': ['clangd'],
+\ 'c': ['clangd'],
 \ }
+"let g:LanguageClient_diagnosticsEnable = 0
+let g:LanguageClient_useVirtualText = 'No'
 nnoremap <F5> <Plug>(lcn-menu)
 nnoremap <silent>K <Plug>(lcn-hover)
 nnoremap <silent>gd <Plug>(lcn-definition)
@@ -96,7 +105,8 @@ if has("termguicolors")
 endif
 
 set bg=dark
-colorscheme srcery
+"colorscheme srcery
+colorscheme gruvbox
 
 hi Normal guibg=NONE ctermbg=NONE
 hi EndOfBuffer guibg=NONE ctermbg=NONE guifg=#FF0000

@@ -3,10 +3,10 @@ set -u
 
 cp .bash_aliases .bashrc $HOME
 cp .tmux.conf .vimrc $HOME
+
+if [ ! -d $HOME/.config/nvim ]; then
+	mkdir -p $HOME/.config/nvim
+fi
 cp init.vim $HOME/.config/nvim/init.vim
-cp sxhkd $HOME/.config
-cp bspwm $HOME/.config
-cp i3 $HOME/.config
-cp polybar $HOME/.config
 
 echo "dotfiles installed"
