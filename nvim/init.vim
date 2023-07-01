@@ -37,6 +37,9 @@ Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'gruvbox-community/gruvbox'
+Plug 'rebelot/kanagawa.nvim'
+Plug 'catppuccin/nvim'
+Plug 'folke/tokyonight.nvim'
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
@@ -44,7 +47,6 @@ Plug 'autozimu/LanguageClient-neovim', {
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'srcery-colors/srcery-vim'
 call plug#end()
 "----------------------------------------------------------------------
 set guicursor=n-v-c-i:block
@@ -62,6 +64,7 @@ nnoremap <silent>gd <Plug>(lcn-definition)
 let airline_powerline_fonts = 1
 let airline_detect_modified = 1
 let airline#extensions#tabline#enabled = 1
+let g:airline_theme='minimalist'
 let NERDTreeQuitOnOpen = 1
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
@@ -105,8 +108,9 @@ if has("termguicolors")
 endif
 
 set bg=dark
-"colorscheme srcery
-colorscheme gruvbox
+"colorscheme gruvbox
+colorscheme kanagawa-wave
+
 
 hi Normal guibg=NONE ctermbg=NONE
 hi EndOfBuffer guibg=NONE ctermbg=NONE guifg=#FF0000
