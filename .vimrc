@@ -35,12 +35,14 @@ plug#begin('~/.vim/autoload/plugged')
 Plug 'scrooloose/NERDTree'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'gryf/wombat256grf'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'gruvbox-community/gruvbox'
+#Plug 'srcery-colors/srcery-vim'
 plug#end()
 #----------------------------------------------------------------------
 g:airline_powerline_fonts = 1
@@ -83,16 +85,16 @@ nnoremap ` :NERDTreeToggle<cr>
 #----------------------------------------------------------------------
 def g:X11Copy(): string
   normal! gvy
-  call system('xsel -ib', @0)
+  call system('/usr/bin/xsel -ib', @0)
   return @0
 enddef
 def g:X11Paste(): string
-  @" = system('xsel -ob')
+  @" = system('/usr/bin/xsel -ob')
   normal! p
   return @"
 enddef
 def g:X11Replace(): string
-  @" = system('xsel -ob')
+  @" = system('/usr/bin/xsel -ob')
   normal! gvp
   return @"
 enddef
@@ -111,6 +113,7 @@ endif
 set bg=dark
 #colorscheme wombat256grf
 colorscheme gruvbox
+#colorscheme srcery
 
 hi Normal guibg=NONE ctermbg=NONE
 hi EndOfBuffer guibg=NONE ctermbg=NONE guifg=#FF0000
