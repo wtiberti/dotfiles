@@ -36,27 +36,26 @@ fi
 
 __set_prompt() {
 	PS1=''
-	#local exitvalue=${PIPESTATUS[-1]}
-	#local exitcolor="\[\e[48;5;237;92m\]"
-	#local exitchar="✔"
-	#if [ ${exitvalue} != 0 ]; then
-	#	exitcolor="\[\e[48;5;237;91m\]"
-	#	exitchar="✘"
-	#fi
-	#PS1+="${exitcolor}${exitchar}:${exitvalue} "
+	local bg1="235"
+	local bg2="237"
+	local bg3="240"
+	local fg1="72"
+	local fg2="75"
+	local fg3="148"
 	local stylestop="\[\e[0m\]"
-	local style1="\[\e[48;5;237;1;36m\]"
-	local style2="\[\e[48;5;240;1;34m\]"
-	local style3="\[\e[48;5;242;1;92m\]"
-	local arrow1="\[\e[48;5;240;38;5;237m\]"
-	local arrow2="\[\e[48;5;242;38;5;240m\]"
-	local arrow3="\[\e[48;5;0;0;1;38;5;242m\]"
+	local style1="\[\e[48;5;$bg1;1;38;5;${fg1}m\]"
+	local style2="\[\e[48;5;$bg2;1;38;5;${fg2}m\]"
+	local style3="\[\e[48;5;$bg3;1;38;5;${fg3}m\]"
+	local arrow1="\[\e[48;5;$bg2;38;5;${bg1}m\]"
+	local arrow2="\[\e[48;5;$bg3;38;5;${bg2}m\]"
+	local arrow3="\[\e[48;5;0;0;1;38;5;${bg3}m\]"
 	PS1+="${style1}\u@\h${arrow1}${style2}\W${arrow2}${style3}\$${arrow3}${stylestop} "
 }
 
 PROMPT_COMMAND=__set_prompt
-EDITOR=nvim
-VISUAL=nvim
+EDITOR=vim
+VISUAL=vim
+PAGER=less
 LESSHISTSIZE=0
 # Colors in less & man
 export LESS_TERMCAP_mb=$(tput bold; tput setaf 2) # green
@@ -77,5 +76,4 @@ export LESS="--RAW-CONTROL-CHARS"
 
 export GOPATH=$HOME/Documents/go
 export PATH=$PATH:$HOME/.local/bin:$HOME/Scripts:$HOME/.cargo/bin:$GOPATH/bin:$HOME/.local/share/gem/ruby/3.0.0/bin
-
-#[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+export LIBVA_DRIVER_NAME=iHD

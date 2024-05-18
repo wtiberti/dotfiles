@@ -41,8 +41,6 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'gryf/wombat256grf'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'gruvbox-community/gruvbox'
-#Plug 'srcery-colors/srcery-vim'
 plug#end()
 #----------------------------------------------------------------------
 g:airline_powerline_fonts = 1
@@ -81,39 +79,46 @@ vnoremap K :m '<-2<CR>gv=gv
 nnoremap <leader>gs :Git<CR>
 nnoremap <leader>gf :diffget //3<CR>
 nnoremap <leader>gj :diffget //2<CR>
-nnoremap ` :NERDTreeToggle<cr>
+# Keyboard - italian
+nnoremap \ :NERDTreeToggle<cr>
+nnoremap ç :
+vnoremap ç :
 #----------------------------------------------------------------------
 def g:X11Copy(): string
-  normal! gvy
-  call system('/usr/bin/xsel -ib', @0)
-  return @0
+	normal! gvy
+	call system('/usr/bin/xsel -b', @0)
+	return @0
 enddef
 def g:X11Paste(): string
-  @" = system('/usr/bin/xsel -ob')
-  normal! p
-  return @"
+	@" = system('/usr/bin/xsel -bo')
+	normal! p
+	return @"
 enddef
 def g:X11Replace(): string
-  @" = system('/usr/bin/xsel -ob')
-  normal! gvp
-  return @"
+	@" = system('/usr/bin/xsel -bo')
+	normal! gvp
+	return @"
 enddef
 defcompile
 
-vnoremap <leader>y :call X11Copy()<CR>
-nnoremap <leader>p :call X11Paste()<CR>
+vnoremap <leader>y :w !xsel -b<CR><CR>
+nnoremap <leader>p :r !xsel -bo<CR>
 vnoremap <leader>p :call X11Replace()<CR>
 
 if has("termguicolors")
-  set t_8f=[38;2;%lu;%lu;%lum
-  set t_8b=[48;2;%lu;%lu;%lum
-  set termguicolors
+	set t_8f=[38;2;%lu;%lu;%lum
+	set t_8b=[48;2;%lu;%lu;%lum
+	set termguicolors
 endif
 
 set bg=dark
-#colorscheme wombat256grf
-colorscheme gruvbox
-#colorscheme srcery
 
-hi Normal guibg=NONE ctermbg=NONE
-hi EndOfBuffer guibg=NONE ctermbg=NONE guifg=#FF0000
+if has("gui_running")
+	set columns=110
+	set lines=40
+	set guioptions=acv
+	set guifont=Hack\ 11
+else
+	hi Normal guibg=NONE ctermbg=NONE
+	hi EndOfBuffer guibg=NONE ctermbg=NONE guifg=#FF0000
+endif
